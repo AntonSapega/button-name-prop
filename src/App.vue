@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Button :btnName="nameOfButton" />
+    <Button :btnName="nameOfButton" @callAlert="callAlertHandler" />
   </div>
 </template>
 
@@ -16,6 +16,12 @@ export default {
   data() {
     return {
       nameOfButton: 'You can change this name'
+    }
+  },
+
+  methods: {
+    callAlertHandler() {
+      alert('Hello from parent')
     }
   }
 }

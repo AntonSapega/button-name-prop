@@ -1,32 +1,26 @@
 <template>
-    <div class="btn">
-        <button type="button" @click="callAlert">{{btnName}}</button>
-    </div>
+  <div class="btn">
+    <button type="button" @click="clickListener">{{btnName}}</button>
+  </div>
 </template>
 
 <script>
 export default {
-	name: 'Button',
-	props: {
-		btnName: {
+  name: "Button",
+  props: {
+    btnName: {
       type: String,
       required: true
     }
 	},
-    data() {
-        return {
-   
-        }
-    },
-
-    methods: {
-        callAlert() {
-            alert('Hello World')
-        }
-    }
+	
+	methods: {
+		clickListener() {
+			this.$emit('callAlert')
+		}
+	}
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
