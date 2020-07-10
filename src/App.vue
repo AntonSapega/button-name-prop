@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Button :btnName="nameOfButton" @callAlert="callAlertHandler" />
+    <Button class="btn" :btnName="randomNumber" @callAlert="callAlertHandler" />
+    <Button class="btn" :btnName="randomLetter" @callAlert="callAlertHandler" />
+    <Button class="btn" :btnName="quantityClicks" @callAlert="callAlertHandler" />
   </div>
 </template>
 
@@ -15,7 +17,9 @@ export default {
 
   data() {
     return {
-      nameOfButton: 'You can change this name'
+      randomNumber: 'Random number',
+      randomLetter: 'Random letter',
+      quantityClicks: 'Quantity of clicks'
     }
   },
 
@@ -35,5 +39,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.btn {
+  margin: 25px;
 }
 </style>
