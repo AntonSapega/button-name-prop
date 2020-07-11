@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Button class="btn" :btnName="randomNumber" @callAlert="generateRandomNumber" />
-    <Button class="btn" :btnName="randomLetter" @callAlert="generateRandomLetter" />
-    <Button class="btn" :btnName="quantityClicks" @callAlert="valueOfClicks" />
+    <Button class="btn" :btnName="randomNumber" @getMethod="callRandomNumber" />
+    <Button class="btn" :btnName="randomLetter" @getMethod="callRandomLetter" />
+    <Button class="btn" :btnName="quantityClicks" @getMethod="callQuantityClicks" />
   </div>
 </template>
 
@@ -26,18 +26,16 @@ export default {
   },
 
   methods: {
-    generateRandomNumber() {
-      alert(Math.floor(Math.random() * 1000))
+    callRandomNumber($event) {
+      alert($event.rndNum)
     },
 
-    generateRandomLetter() {
-      const randomLetterPosition = Math.round( 65 - 0.5 + Math.random() * (90 - 65 + 1) )
-      alert(String.fromCodePoint( Math.floor(randomLetterPosition) ))
+    callRandomLetter($event) {
+      alert($event.rndLetter)
     },
 
-    valueOfClicks() {
-      this.clicks++
-      alert(this.clicks)
+    callQuantityClicks($event) {
+      alert($event.clicks)
     }
   }
 }
