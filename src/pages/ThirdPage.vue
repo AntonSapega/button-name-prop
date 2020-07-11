@@ -2,9 +2,9 @@
   <div>
     <h1 class="title">Third Page</h1>
 
-    <Button class="btn" :btnName="randomNumber" chooseFunc="num" @rndNumber="callRandomNumber" />
-    <Button class="btn" :btnName="randomLetter" chooseFunc="letter" @rndLetter="callRandomLetter" />
-    <Button class="btn" :btnName="quantityClicks" chooseFunc="quantity" @quantityClicks="callQuantityClicks" />
+    <Button class="btn" :btnName="randomNumber" chooseFunc="num" @rndNumber="callAlert" />
+    <Button class="btn" :btnName="randomLetter" chooseFunc="letter" @rndLetter="callAlert" />
+    <Button class="btn" :btnName="quantityClicks" chooseFunc="quantity" @quantityClicks="callAlert" />
   </div>
 </template>
 
@@ -25,15 +25,7 @@ export default {
   },
 
   methods: {
-    callRandomNumber($event) {
-      alert($event)
-    },
-
-    callRandomLetter($event) {
-      alert($event)
-    },
-
-    callQuantityClicks($event) {
+    callAlert($event) {
       alert($event)
     }
   }
