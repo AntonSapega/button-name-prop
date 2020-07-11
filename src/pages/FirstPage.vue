@@ -2,9 +2,9 @@
   <div>
     <h1 class="title">First Page</h1>
 
-    <Button class="btn" :btnName="randomNumber" @getMethod="callRandomNumber" />
-    <Button class="btn" :btnName="randomLetter" @getMethod="callRandomLetter" />
-    <Button class="btn" :btnName="quantityClicks" @getMethod="callQuantityClicks" />
+    <Button class="btn" :btnName="randomNumber" chooseFunc="num" @rndNumber="callRandomNumber" />
+    <Button class="btn" :btnName="randomLetter" chooseFunc="letter" @rndLetter="callRandomLetter" />
+    <Button class="btn" :btnName="quantityClicks" chooseFunc="quantity" @quantityClicks="callQuantityClicks" />
   </div>
 </template>
 
@@ -21,22 +21,20 @@ export default {
       randomNumber: 'Random number',
       randomLetter: 'Random letter',
       quantityClicks: 'Quantity of clicks',
-
-      clicks: 0
     }
   },
 
   methods: {
     callRandomNumber($event) {
-      alert($event.rndNum)
+      alert($event)
     },
 
     callRandomLetter($event) {
-      alert($event.rndLetter)
+      alert($event)
     },
 
     callQuantityClicks($event) {
-      alert($event.clicks)
+      alert($event)
     }
   }
 };

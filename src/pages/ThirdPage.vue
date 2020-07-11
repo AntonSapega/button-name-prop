@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1>Third Page</h1>
+    <h1 class="title">Third Page</h1>
 
-    <Button class="btn" :btnName="randomNumber" @getMethod="callRandomNumber" />
-    <Button class="btn" :btnName="randomLetter" @getMethod="callRandomLetter" />
-    <Button class="btn" :btnName="quantityClicks" @getMethod="callQuantityClicks" />
+    <Button class="btn" :btnName="randomNumber" chooseFunc="num" @rndNumber="callRandomNumber" />
+    <Button class="btn" :btnName="randomLetter" chooseFunc="letter" @rndLetter="callRandomLetter" />
+    <Button class="btn" :btnName="quantityClicks" chooseFunc="quantity" @quantityClicks="callQuantityClicks" />
   </div>
 </template>
 
 <script>
-import Button from "../components/Button.vue";
+import Button from '../components/Button.vue'
 
 export default {
   components: {
@@ -18,29 +18,28 @@ export default {
 
   data() {
     return {
-      randomNumber: "Random number",
-      randomLetter: "Random letter",
-      quantityClicks: "Quantity of clicks",
-
-      clicks: 0
-    };
+      randomNumber: 'Random number',
+      randomLetter: 'Random letter',
+      quantityClicks: 'Quantity of clicks',
+    }
   },
 
   methods: {
     callRandomNumber($event) {
-      alert($event.rndNum);
+      alert($event)
     },
 
     callRandomLetter($event) {
-      alert($event.rndLetter);
+      alert($event)
     },
 
     callQuantityClicks($event) {
-      alert($event.clicks);
+      alert($event)
     }
   }
 };
 </script>
 
 <style>
+
 </style>

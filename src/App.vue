@@ -3,16 +3,16 @@
     <nav class="navigation">
       <ul>
         <li>
-          <a href="/">Home</a>
+          <router-link class='link' to="/">Home</router-link>
         </li>
         <li>
-          <a href="/first">First Page</a>
+          <router-link class='link' to="/first">First Page</router-link>
         </li>
         <li>
-          <a href="/second">Second Page</a>
+          <router-link class='link' to="/second">Second Page</router-link>
         </li>
         <li>
-          <a href="/third">Third Page</a>
+          <router-link class='link' to="/third">Third Page</router-link>
         </li>
       </ul>
     </nav>
@@ -52,7 +52,7 @@ export default {
   font-size: 22px;
 }
 
-.navigation ul li a {
+.link {
   text-decoration: none;
 }
 
