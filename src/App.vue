@@ -2,17 +2,10 @@
   <div id="app">
     <nav class="navigation">
       <ul>
-        <li>
-          <router-link class='link' to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link class='link' to="/first">First Page</router-link>
-        </li>
-        <li>
-          <router-link class='link' to="/second">Second Page</router-link>
-        </li>
-        <li>
-          <router-link class='link' to="/third">Third Page</router-link>
+        <li v-for="(page, index) in pages" :key="'index' + index" @click="clickHandler(index)">
+          <router-link class='link' :class="activePage(index) ? 'active' : ''" :to="page.src">
+          {{page.name}}
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -23,10 +16,32 @@
 
 <script>
 
-
 export default {
   name: 'App',
-}
+
+  data() {
+    return {
+      pages: [
+        {name: 'Home', src: '/'},
+        {name: 'First Page', src: '/first'},
+        {name: 'Second Page', src: '/second'},
+        {name: 'Third Page', src: '/third'}
+      ],
+
+      selectedPage: null
+    }
+  },
+
+  methods: {
+    activePage(i) {
+      return i === this.selectedPage
+    },
+
+    clickHandler(i) {
+      this.selectedPage = i
+    }
+  }
+}  
 </script>
 
 <style>
@@ -54,10 +69,10 @@ export default {
 
 .link {
   text-decoration: none;
+  color: rgb(73, 72, 72);
 }
 
-.link:active {
-  color: blue;
+.active {
   text-decoration: underline;
 }
 
