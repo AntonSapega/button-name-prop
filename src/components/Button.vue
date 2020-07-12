@@ -23,7 +23,9 @@ export default {
     return {
       rndNum: null,
       rndLetter: null,
-      clicks: 0
+      clicks: null,
+
+      returnValue: null
     };
   },
 
@@ -31,33 +33,20 @@ export default {
     clickListener() {
       switch (this.chooseFunc) {
         case "num":
-          this.generateRandomNumber();
+          this.returnValue = Math.floor(Math.random() * 1000);
           break;
         case "letter":
-          this.generateRandomLetter();
+          this.returnValue = String.fromCodePoint(
+            Math.floor(Math.round(65 - 0.5 + Math.random() * (90 - 65 + 1)))
+          );
           break;
         case "quantity":
-          this.valueOfClicks();
+          this.clicks = this.clicks === null ? 1 : this.clicks + 1;
+          this.returnValue = this.clicks
           break;
       }
-    },
 
-    generateRandomNumber() {
-      this.rndNum = Math.floor(Math.random() * 1000);
-      this.$emit("rndNumber", this.rndNum);
-    },
-
-    generateRandomLetter() {
-      const randomLetterPosition = Math.round(
-        65 - 0.5 + Math.random() * (90 - 65 + 1)
-      );
-      this.rndLetter = String.fromCodePoint(Math.floor(randomLetterPosition));
-      this.$emit("rndLetter", this.rndLetter);
-    },
-
-    valueOfClicks() {
-      this.clicks++;
-      this.$emit("quantityClicks", this.clicks);
+      this.$emit('getResult', this.returnValue)
     }
   }
 };

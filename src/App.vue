@@ -56,6 +56,11 @@ export default {
   text-decoration: none;
 }
 
+.link:active {
+  color: blue;
+  text-decoration: underline;
+}
+
 .btn {
   margin: 25px;
 }
