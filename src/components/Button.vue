@@ -23,7 +23,7 @@ export default {
     return {
       posFirstLetterInUnicode: 65,
       posLastLetterInUnicode: 90,
-      clicks: null,
+      clicks: 0,
       returnValue: null
     };
   },
@@ -35,10 +35,10 @@ export default {
           this.returnValue = Math.floor(Math.random() * 1000);
           break;
         case "letter":
-          this.returnValue = String.fromCodePoint( this.calculateRandomPositionOfLetter() );
+          this.returnValue = String.fromCodePoint( this.randomLetter() );
           break;
         case "quantity":
-          this.clicks = this.clicks === null ? 1 : this.clicks + 1;
+          this.clicks++
           this.returnValue = this.clicks
           break;
       }
@@ -46,7 +46,7 @@ export default {
       this.$emit('getResult', this.returnValue)
     },
 
-    calculateRandomPositionOfLetter() {
+    randomLetter() {
       return Math.floor(
         Math.round(this.posFirstLetterInUnicode - 0.5 + Math.random() *
         (this.posLastLetterInUnicode - this.posFirstLetterInUnicode + 1))
