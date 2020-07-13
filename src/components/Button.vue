@@ -21,10 +21,9 @@ export default {
 
   data() {
     return {
-      rndNum: null,
-      rndLetter: null,
+      posFirstLetterInUnicode: 65,
+      posLastLetterInUnicode: 90,
       clicks: null,
-
       returnValue: null
     };
   },
@@ -36,9 +35,7 @@ export default {
           this.returnValue = Math.floor(Math.random() * 1000);
           break;
         case "letter":
-          this.returnValue = String.fromCodePoint(
-            Math.floor(Math.round(65 - 0.5 + Math.random() * (90 - 65 + 1)))
-          );
+          this.returnValue = String.fromCodePoint( this.calculateRandomPositionOfLetter() );
           break;
         case "quantity":
           this.clicks = this.clicks === null ? 1 : this.clicks + 1;
@@ -47,6 +44,13 @@ export default {
       }
 
       this.$emit('getResult', this.returnValue)
+    },
+
+    calculateRandomPositionOfLetter() {
+      return Math.floor(
+        Math.round(this.posFirstLetterInUnicode - 0.5 + Math.random() *
+        (this.posLastLetterInUnicode - this.posFirstLetterInUnicode + 1))
+      )
     }
   }
 };
