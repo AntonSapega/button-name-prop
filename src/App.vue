@@ -25,7 +25,9 @@ export default {
         {name: 'Home', src: '/'},
         {name: 'First Page', src: '/first'},
         {name: 'Second Page', src: '/second'},
-        {name: 'Third Page', src: '/third'}
+        {name: 'Third Page', src: '/third'},
+        {name: 'Reverse Page', src: '/reverse'}
+        
       ],
 
       selectedPage: null
@@ -44,7 +46,7 @@ export default {
 }  
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
