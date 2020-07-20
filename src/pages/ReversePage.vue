@@ -1,19 +1,23 @@
 <template>
   <div class="reverse">
     <h1>Reverse Page</h1>
-    <h3>String: {{db.str}}</h3>
-    <h3>Number: {{db.num}}</h3>
+    <h3>String: {{str}}</h3>
+    <h3>Number: {{num}}</h3>
 
-    <input type="text" placeholder="Type some text" v-model="db.str" />
+    <input type="text" placeholder="Type some text" v-model="str" />
+    <input type="text" placeholder="Type some number" v-model="num" />
 
-    <input type="text" placeholder="Type some number" v-model="db.num" />
-
-    <Reverse :sendOnTransform="db" @getInvertValues="modified" />
+    <Reverse
+			:transformString="str"
+			@getInvertString="modStr"
+			:transformNumber='num'
+			@getModNumber="modNum"
+		/>
   </div>
 </template>
 
 <script>
-import Reverse from '../components/Reverse.vue'
+import Reverse from "../components/Reverse.vue";
 
 export default {
   components: {
@@ -22,32 +26,32 @@ export default {
 
   data() {
     return {
-			db: {
-				str: '',
-				num: null,
-			}
-      
+      str: '',
+      num: ''
     };
-	},
-	
-	methods: {
-		modified($event) {
-			this.db.str = $event.str
-			this.db.num = $event.num
+  },
+
+  methods: {
+		modStr($event) {
+			this.str = $event;
+		},
+
+		modNum($event) {
+			this.num = $event;
 		}
-	}
+  }
 };
 </script>
 
 <style scoped>
 .reverse {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 input {
   display: block;
-	width: 250px;
-	margin: 10px 0 10px 0;
+  width: 250px;
+  margin: 10px 0 10px 0;
 }
 </style>

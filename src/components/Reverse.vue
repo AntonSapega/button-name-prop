@@ -6,11 +6,17 @@
 
 <script>
 export default {
-  name: 'Reverse',
+  name: "Reverse",
+
   props: {
-    sendOnTransform: {
-      type: Object,
-      required: true
+    transformString: {
+      type: String,
+      required: false
+    },
+
+    transformNumber: {
+      type: String,
+      required: false
     }
   },
 
@@ -20,33 +26,37 @@ export default {
         str: null,
         num: null
       }
-    }
+    };
   },
 
   methods: {
     invert() {
-      this.value.str = this.sendOnTransform.str.split("").reverse().join("");
-
-      switch ( isNaN(this.sendOnTransform.num) ) {
+      switch (this.transformString === "") {
         case false:
-          this.value.num = parseInt(this.sendOnTransform.num, 10) % 2 !== 0
-            ? parseInt(this.sendOnTransform.num, 10) - 2 * parseInt(this.sendOnTransform.num, 10)
-            : parseInt(this.sendOnTransform.num, 10) * 3
-        break;
-        
-        default:
-          alert('You should enter number in field number');
-        break;
+          this.str = this.transformString
+            .split("")
+            .reverse()
+            .join("");
+          this.$emit("getInvertString", this.str);
+          break;
       }
 
-      
-      
-      this.$emit('getInvertValues', this.value)
+      if (
+        !isNaN(parseInt(this.transformNumber, 10)) &&
+        this.transformNumber !== ""
+      ) {
+        this.num =
+          parseInt(this.transformNumber, 10) % 2 !== 0
+            ? parseInt(this.transformNumber, 10) - 2 * parseInt(this.transformNumber, 10)
+            : parseInt(this.transformNumber, 10) * 3;
+        this.$emit("getModNumber", this.num.toString());
+      } else if (this.transformNumber !== "") {
+        alert("You should enter number in field number");
+      }
     }
   }
-}
+};
 </script>
 
 <style scoped>
-  
 </style>
