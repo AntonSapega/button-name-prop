@@ -4,15 +4,15 @@
     <h3>String: {{str}}</h3>
     <h3>Number: {{num}}</h3>
 
-    <input type="text" placeholder="Type some text" v-model="str" />
-    <input type="text" placeholder="Type some number" v-model="num" />
-
     <Reverse
 			:transformString="str"
 			@getInvertString="modStr"
 			:transformNumber='num'
 			@getModNumber="modNum"
-		/>
+		>
+		<input type="text" placeholder="Type some text" v-model="str" />
+    <input type="text" placeholder="Type some number" v-model="num" />
+    </Reverse>
   </div>
 </template>
 

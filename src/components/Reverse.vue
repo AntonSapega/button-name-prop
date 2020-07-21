@@ -1,5 +1,6 @@
 <template>
   <div>
+    <slot />
     <button type="button" @click="invert">Invert</button>
   </div>
 </template>
