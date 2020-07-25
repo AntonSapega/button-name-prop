@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <slot />
-    <button type="button" @click="invert">Invert</button>
+  <div class="reverse">
+
+    <input type="text" placeholder="Type some text" v-model="stringValue" />
+    <input type="number" placeholder="Type some number" v-model="numberValue" />
+
   </div>
 </template>
 
@@ -9,55 +11,41 @@
 export default {
   name: "Reverse",
 
-  props: {
-    transformString: {
-      type: String,
-      required: false
-    },
-
-    transformNumber: {
-      type: String,
-      required: false
-    }
-  },
-
   data() {
     return {
-      value: {
-        str: null,
-        num: null
-      }
+      stringValue: '',
+      numberValue: null,
     };
   },
 
-  methods: {
-    invert() {
-      switch (this.transformString === "") {
-        case false:
-          this.str = this.transformString
-            .split("")
-            .reverse()
-            .join("");
-          this.$emit("getInvertString", this.str);
-          break;
-      }
+  watch: {
+    stringValue() {
+      const str = this.stringValue.split('').reverse().join('');
+      this.$emit('getInvertString', str);
+    },
 
-      if (
-        !isNaN(parseInt(this.transformNumber, 10)) &&
-        this.transformNumber !== ""
-      ) {
-        this.num =
-          parseInt(this.transformNumber, 10) % 2 !== 0
-            ? parseInt(this.transformNumber, 10) - 2 * parseInt(this.transformNumber, 10)
-            : parseInt(this.transformNumber, 10) * 3;
-        this.$emit("getModNumber", this.num.toString());
-      } else if (this.transformNumber !== "") {
-        alert("You should enter number in field number");
-      }
+    numberValue(value) {
+      const num = value % 2 !== 0
+        ? value - 2 * value
+        : value * 3;
+
+        this.$emit("getModNumber", num);
     }
   }
 };
 </script>
 
 <style scoped>
+.reverse {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+input {
+  display: block;
+  width: 250px;
+  margin: 5px 0 10px 0;
+  height: 25px;
+  font-size: 16px;
+}
 </style>

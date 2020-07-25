@@ -5,14 +5,10 @@
     <h3>Number: {{num}}</h3>
 
     <Reverse
-			:transformString="str"
 			@getInvertString="modStr"
-			:transformNumber='num'
-			@getModNumber="modNum"
-		>
-		<input type="text" placeholder="Type some text" v-model="str" />
-    <input type="text" placeholder="Type some number" v-model="num" />
-    </Reverse>
+      @getModNumber="modNum"
+		/>
+
   </div>
 </template>
 
@@ -49,9 +45,8 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-input {
-  display: block;
-  width: 250px;
-  margin: 10px 0 10px 0;
+
+h1, h2, h3 {
+  margin: 5px;
 }
 </style>
