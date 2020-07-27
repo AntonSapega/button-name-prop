@@ -1,8 +1,7 @@
 <template>
   <div class="reverse">
 
-    <input type="text" placeholder="Type some text" v-model="stringValue" />
-    <input type="number" placeholder="Type some number" v-model="numberValue" />
+    <input type="text" placeholder="Type some text" v-model = stringField />
 
   </div>
 </template>
@@ -11,17 +10,26 @@
 export default {
   name: "Reverse",
 
+  props: {
+    sendStr: {
+      type: String,
+      required: false
+    }
+  },
+
   data() {
     return {
-      stringValue: '',
-      numberValue: null,
+      stringField: this.sendStr,
     };
   },
 
   watch: {
-    stringValue() {
-      const str = this.stringValue.split('').reverse().join('');
-      this.$emit('getInvertString', str);
+    stringField() {
+      this.$emit('getInvertString', this.reverseString);
+    },
+
+    sendStr(value) {
+      this.stringField = value
     },
 
     numberValue(value) {
@@ -30,6 +38,12 @@ export default {
         : value * 3;
 
         this.$emit("getModNumber", num);
+    }
+  },
+
+  computed: {
+    reverseString() {
+      return this.stringField.split('').reverse().join('');
     }
   }
 };

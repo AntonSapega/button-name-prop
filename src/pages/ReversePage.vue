@@ -1,14 +1,11 @@
 <template>
   <div class="reverse">
     <h1>Reverse Page</h1>
-    <h3>String: {{str}}</h3>
-    <h3>Number: {{num}}</h3>
+    <h3>String: {{representationSting}}</h3>
 
-    <Reverse
-			@getInvertString="modStr"
-      @getModNumber="modNum"
-		/>
+    <input type="text" placeholder="Main area for text" v-model="str" />
 
+    <Reverse :sendStr="str" @getInvertString="modString" />
   </div>
 </template>
 
@@ -17,25 +14,21 @@ import Reverse from "../components/Reverse.vue";
 
 export default {
   components: {
-    Reverse
+    Reverse,
   },
 
   data() {
     return {
-      str: '',
-      num: ''
+      str: "",
+      representationSting: null,
     };
   },
 
   methods: {
-		modStr($event) {
-			this.str = $event;
-		},
-
-		modNum($event) {
-			this.num = $event;
-		}
-  }
+    modString($event) {
+      this.representationSting = $event;
+    },
+  },
 };
 </script>
 
@@ -46,7 +39,17 @@ export default {
   flex-direction: column;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 5px;
+}
+
+input {
+  display: block;
+  width: 250px;
+  margin: 5px 0 10px 0;
+  height: 25px;
+  font-size: 16px;
 }
 </style>
